@@ -201,15 +201,49 @@ Required in production:
 - Static assets are served from the `dist` folder in production
 - Service worker is registered for PWA functionality
 
-## PWA Installation
+## PWA Setup & Installation
 
-The application can be installed as a Progressive Web App:
+### PWA Requirements
 
-1. Visit the site in a modern browser (Chrome, Edge, Safari)
-2. Look for the "Install App" prompt or option in the browser menu
-3. Click install to add the app to your home screen/desktop
+For the app to be installable as a PWA, you need:
 
-The service worker will cache assets for offline access.
+1. **Service Worker Registration** - Automatically registers on app load (in `client/src/main.tsx`)
+2. **Web App Manifest** - Configured in `public/manifest.json` with app metadata
+3. **PWA Icons** - PNG icons at 192x192 and 512x512 in `public/` directory
+4. **HTTPS** - PWAs require secure context (automatic on platforms like Render.com)
+5. **Public Directory** - Vite must copy public files to build output
+
+### PWA Configuration
+
+The following files enable PWA functionality:
+
+- **`client/src/main.tsx`**: Registers service worker on app load
+- **`public/service-worker.js`**: Handles offline caching and asset management
+- **`public/manifest.json`**: Defines app name, icons, colors, and display mode
+- **`public/icon-192.png`** & **`public/icon-512.png`**: App icons for install prompts
+- **`vite.config.ts`**: Configured to copy public directory to build output
+
+### Installing the PWA
+
+Once deployed with HTTPS:
+
+1. Visit the site on mobile (Chrome/Safari) or desktop (Chrome/Edge)
+2. Look for the "Install" or "Add to Home Screen" prompt
+3. On iOS Safari: Tap share icon → "Add to Home Screen"
+4. On Android Chrome: Tap menu → "Install app" or "Add to Home Screen"
+5. The app icon will appear on your device like a native app
+
+The service worker caches assets for offline access and faster load times.
+
+### Generating Custom PWA Icons
+
+To replace the default "JB" logo icons:
+
+1. Open `generate-icon.html` in your browser
+2. Save the auto-downloaded PNG files as `icon-192.png` and `icon-512.png`
+3. Or use your own design tool to create 192x192 and 512x512 PNG icons
+4. Place them in the `public/` directory
+5. Update `public/manifest.json` if changing icon names
 
 ## Design Guidelines
 
