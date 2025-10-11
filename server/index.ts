@@ -67,7 +67,10 @@ app.use((req, res, next) => {
  * 4. Start HTTP server on configured port
  */
 (async () => {
-  const server = await registerRoutes(app);
+  try {
+    log('Starting server bootstrap...');
+    const server = await registerRoutes(app);
+    log('Routes registered successfully');
 
   /**
    * Global Error Handler
@@ -101,4 +104,8 @@ app.use((req, res, next) => {
   server.listen(port, '0.0.0.0', () => {
     log(`serving on port ${port}`);
   });
+  } catch (error) {
+    console.error('FATAL: Server bootstrap failed:', error);
+    process.exit(1);
+  }
 })();
