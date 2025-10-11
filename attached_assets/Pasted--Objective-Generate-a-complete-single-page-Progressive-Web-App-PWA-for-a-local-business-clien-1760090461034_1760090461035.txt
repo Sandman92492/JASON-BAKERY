@@ -1,0 +1,83 @@
+**Objective:** Generate a complete, single-page Progressive Web App (PWA) for a local business client. The final output must be a single `index.html` file, a single `style.css` file, a `manifest.json` file, and a `service-worker.js` file. The design must be modern, fully responsive, and look like a high-end custom build.
+
+**Role:** You are an expert frontend developer and UI/UX designer. Your task is to take a detailed client brief and build a beautiful, functional, and fast-loading PWA from scratch.
+
+**Technical Stack & Implementation Details:**
+*   **Structure:** A single `index.html` file using semantic HTML5 tags (`<header>`, `<main>`, `<section>`, `<footer>`).
+*   **Styling:** A single `style.css` file. Use modern CSS, including Flexbox and Grid for layouts. All CSS variables must be defined in the `:root` selector.
+*   **PWA Manifest:** Generate a complete `manifest.json` file linked in the HTML `<head>`. Configure it with the client's information, `display: standalone`, and appropriate icons (use placeholders).
+*   **Service Worker:** Generate a basic `service-worker.js` file that implements a "cache-first" strategy for offline functionality. Also, generate the necessary JavaScript inside a `<script>` tag in the `index.html` to register the service worker.
+*   **Fonts & Icons:** Use the specified Google Fonts in the HTML `<head>`. Use high-quality, inline SVG icons from a library like Heroicons for all icons to ensure they are sharp and fast-loading.
+
+---
+
+### **Part 1: Client DNA (Filled Out for Jason Bakery)**
+
+*   **Client Name:** `Jason Bakery`
+*   **Client Industry:** `an iconic, artisanal bakery known for its croissants and specialty coffee`
+*   **PWA Name (Short):** `Jason Bakery`
+*   **"About Us" Blurb:** `More than just a bakery, Jason Bakery is a Cape Town institution. We're obsessed with dough and dedicated to crafting the finest croissants, pastries, and breads. It's all about good vibes, great coffee, and even better baked goods.`
+*   **Key Services/Menu Items (up to 6):**
+    1.  `The Doughssant: Our legendary croissant-doughnut hybrid, with a new flavour every week.`
+    2.  `Specialty Coffee: Expertly brewed coffee using beans from local roasters.`
+    3.  `Artisanal Breads: From classic sourdough to unique weekly loaves.`
+    4.  `Gourmet Sandwiches: Creative and delicious sandwiches made on our fresh bread.`
+    5.  `Decadent Pastries: A daily selection of sweet treats, tarts, and cakes.`
+    6.  `Weekend Specials: Unique, limited-edition creations available only on Saturdays.`
+*   **Contact & Location:**
+    *   **Address:** `83 Main Road, Green Point, Cape Town, 8005, South Africa`
+    *   **Phone Number:** `021 433 0538`
+    *   **Email:** `orders@jasonbakery.com`
+    *   **Opening Hours:** `Mon - Fri: 7:00 AM - 3:00 PM, Sat: 8:00 AM - 2:00 PM, Sun: Closed`
+*   **Social Media Links:**
+    *   **Instagram:** `https://www.instagram.com/jasonbakerycpt/`
+    *   **Facebook:** `https://www.facebook.com/JasonBakeryCpt/`
+    *   **Other:** `N/A`
+
+---
+
+### **Part 2: Design System (Filled Out for Jason Bakery)**
+
+*   **Color Palette:**
+    *   `--primary-color`: `#D97706` (A rich, warm orange-gold, inspired by a perfect bake)
+    *   `--secondary-color`: `#1F2937` (A strong, dark charcoal, almost black)
+    *   `--background-color`: `#F9FAFB` (A very light, clean grey)
+    *   `--text-primary`: `#111827` (A solid, dark black for high contrast)
+    *   `--text-secondary`: `#4B5563` (A softer, muted grey for descriptions)
+*   **Typography:**
+    *   **Heading Font:** `Poppins` (Bold and friendly, but still professional)
+    *   **Body Font:** `Inter` (Clean, modern, and highly readable)
+*   **Border Radius Theme:** `8px` (A modern, slightly rounded corner that feels friendly and approachable)
+*   **Icon Style:** `Heroicons, Outline style` (Clean and minimalist to match the brand)
+*   **Hero Layout Choice:** `Classic Centered` (To put the focus squarely on a stunning photo of their food)
+
+---
+
+### **Part 3: Build Order & Content Structure (AI Instructions)**
+
+"Based on all the information above, please now generate the complete `index.html`, `style.css`, `manifest.json`, and `service-worker.js` files.
+
+**Instructions for `style.css`:**
+1.  Start with a basic CSS reset.
+2.  Define all colors from the **Color Palette** as CSS variables in the `:root` selector.
+3.  Set the default `font-family` for the `body` to the specified **Body Font**.
+4.  Define the styles for `h1`, `h2`, `h3` to use the specified **Heading Font**.
+5.  Create a `.container` class for consistent content width.
+6.  Create global styles for buttons (`.btn-primary`, `.btn-secondary`) using the specified colors and **Border Radius Theme**.
+7.  Add comments to delineate the styles for each section.
+
+**Instructions for `index.html`:**
+Generate the HTML with the following sections in this order, using the content from the **Client DNA** section.
+
+1.  **`<head>`:** Link the `style.css` file, the Google Fonts ('Poppins' and 'Inter'), and the `manifest.json` file.
+2.  **Header (`<header>`)**: A clean header with the `Jason Bakery` text logo on the left and navigation links ("Menu," "About," "Contact") on the right. Must have a responsive hamburger menu for mobile.
+3.  **Hero Section (`<section id="hero">`)**: Build this section using the **Classic Centered** layout. Use a high-quality, mouth-watering photo of a croissant as the background image. The headline should be overlaid with a semi-transparent dark scrim to ensure readability.
+    *   **Headline:** `<h1>Perfection in Pastry.</h1>`
+    *   **CTA Button:** "Explore The Menu"
+4.  **Services/Menu Section (`<section id="menu">`)**: Headline: "Our Daily Obsessions". Use a clean, responsive grid to display the **Key Services/Menu Items**. Each item should be in a "Card" component that uses the brand's border radius and colors.
+5.  **About Us Section (`<section id="about">`)**: Headline: "It's All About The Dough". Use a two-column layout. One column for an engaging image (use a high-quality placeholder of a baker's hands working with dough), and the other for the **"About Us" Blurb**.
+6.  **Contact & Location Section (`<section id="contact">`)**: Headline: "Find Us". Use a two-column layout. Left column for all **Contact & Location** details. Right column for an embedded map `<iframe>` pointing to the client's address.
+7.  **Footer (`<footer>`)**: A simple footer with **Social Media Links** (using inline SVG icons) and a copyright notice for the current year and `Jason Bakery`.
+8.  **`<script>` tag:** At the bottom of the `<body>`, include the JavaScript to handle the hamburger menu and to register the `service-worker.js` file.
+
+Please ensure all generated code is clean, well-commented, and follows modern best practices."
