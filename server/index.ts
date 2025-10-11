@@ -98,7 +98,7 @@ app.use((req, res, next) => {
   // Start server on PORT environment variable (default: 3000)
   // This port serves both the API and the client application
   const port = parseInt(process.env.PORT || '3000', 10);
-  server.listen(port, () => {
+  server.listen(port, '0.0.0.0', () => {
     log(`serving on port ${port}`);
   });
 })();
