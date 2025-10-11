@@ -1,5 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import ImportantNotice from "@/components/ImportantNotice";
 
 const breakfastItems = [
   { id: 1, name: "Scrambled/Poached/Fried Eggs", description: "Served with oven-roasted rosa tomatoes and rocket", price: "80" },
@@ -61,11 +62,13 @@ export default function MenuSection() {
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-4 text-card-foreground tracking-tight" data-testid="text-menu-headline">
           OUR MENU
         </h2>
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+        <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
           Everything made fresh, in-house, every day
         </p>
         
-        <Tabs defaultValue="breakfast" className="w-full">
+        <ImportantNotice />
+        
+        <Tabs defaultValue="breakfast" className="w-full mt-12">
           <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 h-auto p-0 mb-8 bg-transparent">
             <TabsTrigger 
               value="breakfast" 

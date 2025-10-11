@@ -1,4 +1,4 @@
-const CACHE_NAME = 'jason-bakery-v1';
+const CACHE_NAME = 'jason-bakery-v2';
 const urlsToCache = [
   '/',
   '/index.html',

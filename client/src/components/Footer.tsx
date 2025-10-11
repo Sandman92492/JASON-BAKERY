@@ -6,31 +6,11 @@ export default function Footer() {
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex flex-col items-center gap-8">
           <div className="mb-4">
-            <svg 
-              className="w-16 h-16 text-foreground" 
-              viewBox="0 0 200 200" 
-              fill="none" 
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path 
-                d="M40 100C40 100 50 60 100 60C150 60 160 100 160 100C160 100 150 140 100 140C50 140 40 100 40 100Z" 
-                stroke="currentColor" 
-                strokeWidth="3" 
-                fill="none"
-              />
-              <path 
-                d="M55 95C55 95 60 80 85 75C95 73 105 73 115 75C140 80 145 95 145 95" 
-                stroke="currentColor" 
-                strokeWidth="3" 
-                fill="none"
-              />
-              <path 
-                d="M70 105C70 105 75 115 100 120C125 115 130 105 130 105" 
-                stroke="currentColor" 
-                strokeWidth="3" 
-                fill="none"
-              />
-            </svg>
+            <img 
+              src="/icon-192.png" 
+              alt="Jason Bakery"
+              className="w-16 h-16"
+            />
           </div>
           
           <h3 className="text-lg font-bold tracking-wide">GENERAL ENQUIRIES</h3>
