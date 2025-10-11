@@ -29,12 +29,7 @@ export default defineConfig({
   root: path.resolve(import.meta.dirname, "client"),
   publicDir: path.resolve(import.meta.dirname, "public"),
   css: {
-    postcss: {
-      plugins: {
-        tailwindcss: {},
-        autoprefixer: {},
-      },
-    },
+    postcss: "./postcss.config.js",
   },
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
