@@ -1,4 +1,4 @@
-const CACHE_NAME = 'jason-bakery-v4';
+const CACHE_NAME = 'jason-bakery-v5';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -34,7 +34,12 @@ self.addEventListener('fetch', (event) => {
     return;
   }
   
-  // Cache-first for assets (JS, CSS, images)
+  // Cache-first for assets (JS, CSS, images) - only GET requests
+  if (event.request.method !== 'GET') {
+    event.respondWith(fetch(event.request));
+    return;
+  }
+  
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
