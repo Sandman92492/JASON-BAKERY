@@ -1,4 +1,4 @@
-const CACHE_NAME = 'jason-bakery-v5';
+const CACHE_NAME = 'jason-bakery-v6';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -14,6 +14,12 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  // Skip caching for non-GET requests (POST, PUT, DELETE)
+  if (event.request.method !== 'GET') {
+    event.respondWith(fetch(event.request));
+    return;
+  }
+
   const url = new URL(event.request.url);
   
   // Network-first for HTML to always get fresh content
@@ -21,24 +27,28 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(event.request)
         .then((response) => {
-          const responseToCache = response.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseToCache);
-          });
+          // Only cache successful responses
+          if (response.status === 200) {
+            const responseToCache = response.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, responseToCache);
+            });
+          }
+          // If server is down (503, 502) or error, fall back to cache
+          if (!response.ok) {
+            return caches.match(event.request).then(cached => cached || response);
+          }
           return response;
         })
         .catch(() => {
+          // Network failure - serve from cache
           return caches.match(event.request);
         })
     );
     return;
   }
   
-  // Cache-first for assets (JS, CSS, images) - only GET requests
-  if (event.request.method !== 'GET') {
-    event.respondWith(fetch(event.request));
-    return;
-  }
+  // Cache-first for assets (JS, CSS, images)
   
   event.respondWith(
     caches.match(event.request)
