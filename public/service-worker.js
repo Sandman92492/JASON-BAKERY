@@ -1,4 +1,4 @@
-const CACHE_NAME = 'jason-bakery-v3';
+const CACHE_NAME = 'jason-bakery-v4';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -14,6 +14,27 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  const url = new URL(event.request.url);
+  
+  // Network-first for HTML to always get fresh content
+  if (event.request.mode === 'navigate' || url.pathname.endsWith('.html')) {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          const responseToCache = response.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseToCache);
+          });
+          return response;
+        })
+        .catch(() => {
+          return caches.match(event.request);
+        })
+    );
+    return;
+  }
+  
+  // Cache-first for assets (JS, CSS, images)
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
